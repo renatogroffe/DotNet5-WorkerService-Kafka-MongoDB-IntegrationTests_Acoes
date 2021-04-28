@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workeracoes-configmap
+data:
+  MongoDBConnection: CONEXAO_MONGO
+  KafkaHost: HOST_KAFKA
+  KafkaUsername: USER_KAFKA
+  KafkaPassword: PASSWORD_KAFKA

@@ -1,0 +1,46 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: APPLICATION-NAME 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: APPLICATION-NAME
+  template:
+    metadata:
+      labels:
+        app: APPLICATION-NAME
+    spec:
+      containers:
+        - name: APPLICATION-NAME
+          image: CR-DEPLOYMENT/IMAGE-DEPLOYMENT:TAG-DEPLOYMENT
+          env:
+            - name: ApacheKafka__Topic
+              value: topic-acoes-gha
+            - name: ApacheKafka__GroupId
+              value: WorkerAcoesGHA
+            - name: ApacheKafka__Broker
+              valueFrom:
+                configMapKeyRef:
+                  name: workeracoes-configmap
+                  key: KafkaHost
+            - name: ApacheKafka__Username
+              valueFrom:
+                configMapKeyRef:
+                  name: workeracoes-configmap
+                  key: KafkaUsername
+            - name: ApacheKafka__Password
+              valueFrom:
+                configMapKeyRef:
+                  name: workeracoes-configmap
+                  key: KafkaPassword
+            - name: MongoDatabase
+              value: DBAcoesGHA
+            - name: MongoCollection
+              value: HistoricoAcoesGHA
+            - name: MongoDBConnection
+              valueFrom:
+                configMapKeyRef:
+                  name: workeracoes-configmap
+                  key: MongoDBConnection
