@@ -37,7 +37,7 @@ namespace WorkerAcoes.IntegrationTests
         [InlineData("ABCD", 100.98)]
         [InlineData("EFGH", 200.9)]
         [InlineData("IJKL", 1_400.978)]
-        public void Test1(string codigo, double valor)
+        public void TestarWorkerService(string codigo, double valor)
         {
             var broker = Configuration["ApacheKafka:Broker"];
             Logger.Information($"Broker Kafka: {broker}");
